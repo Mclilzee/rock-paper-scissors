@@ -1,7 +1,7 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -15,11 +15,11 @@ body {
 }
 
 html {
-  background-color: grey;
+  background-image: url(./images/background.png);
 }
 button {
   border: none;
-  background-color: grey;
+  background-color: inherit;
   width: 300px;
   height: 300px;
   transition-duration: 0.07;
@@ -33,17 +33,16 @@ button {
 .details-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 30px;
 }
 
 .score-container {
   display: flex;
-  justify-content: space-between;
-  gap: 200px;
-  color : gold;
+  color: gold;
   font-size: 50px;
+  gap: 200px;
 }
 
 .winner {
@@ -55,5 +54,20 @@ button {
 .header {
   font-weight: bolder;
   color: darkorange;
-  font-size: 80px;
+  font-size: 70px;
+}
+
+.games-played {
+  font-size: 30px;
+  color: rgb(9, 224, 214);
+  font-weight: bolder;
+}
+
+.credits {
+  font-weight: bolder;
+  color: white;
+}
+
+a {
+  color: orange;
 }

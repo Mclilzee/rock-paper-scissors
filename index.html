@@ -4,29 +4,43 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="index.js"></script>
     <link rel="stylesheet" href="style.css" />
     <title>Rock Paper Scissors</title>
   </head>
   <body>
     <div class="header">Choose rock, paper, scissors to start.</div>
     <div class="container">
-      <button id="rock" class="clicked">
+      <button id="Rock" class="clicked">
         <img src="./images/rock.PNG" alt="image of a rock" />
       </button>
-      <button id="paper" class="clicked">
+      <button id="Paper" class="clicked">
         <img src="./images/paper.png" alt="image of a paper" />
       </button>
-      <button id="scissors" class="clicked">
+      <button id="Scissors" class="clicked">
         <img src="./images/scissors.png" alt="image of a scissor" />
       </button>
     </div>
     <div class="details-container">
+      <label class="games-played"></label>
       <label class="score-container">
-        <label class="player-score">Player score: 0</label>
-        <label class="computer-score">Computer score: 0</label>
+        <label class="player-score"></label>
+        <label class="computer-score"></label>
       </label>
       <lable class="winner">Player has Won!</lable>
     </div>
+    <div class="credits">
+      Background Photo by
+      <a
+        href="https://unsplash.com/@markusspiske?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+        >Markus Spiske</a
+      >
+      on
+      <a
+        href="https://unsplash.com/s/photos/background?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+        >Unsplash</a
+      >
+    </div>
   </body>
+
+  <script src="./index.js"></script>
 </html>
