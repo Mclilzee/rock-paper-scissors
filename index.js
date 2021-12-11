@@ -1,7 +1,7 @@
 let playerScore = 0;
 let computerScore = 0;
 let games = 0;
-const gamesAllowed = 10;
+const gamesAllowed = 5;
 
 function computerPlay() {
   let number = Math.floor(Math.random() * 3);
@@ -54,7 +54,7 @@ function playRound(playerChoice) {
 
 document.querySelectorAll("button").forEach((btn) => {
   btn.addEventListener("click", () => {
-    if (games < gamesAllowed) {
+    if (playerScore < gamesAllowed && computerScore < gamesAllowed) {
       playRound(btn.id);
       btn.classList.add("clicked");
       setTimeout(0.07);
@@ -103,7 +103,7 @@ function game(playerChoise, computerChoise) {
   games++;
   document.querySelector(".games-played").textContent = "Games: " + games;
 
-  if (games === gamesAllowed) {
+  if (playerScore === gamesAllowed || computerScore === gamesAllowed) {
     gameOver();
   }
 }
@@ -127,12 +127,9 @@ function gameOver() {
   if (playerScore > computerScore) {
     winner.textContent = "Human Won the game!";
     winner.style.color = "green";
-  } else if (computerScore > playerScore) {
+  } else {
     winner.textContent = "Robot Won the game!";
     winner.style.color = "red";
-  } else {
-    winner.textContent = "Game was a Draw!";
-    winner.style.color = "yellow";
   }
 
   const reset = document.createElement("button");
