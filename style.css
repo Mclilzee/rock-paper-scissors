@@ -1,0 +1,59 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  margin-bottom: 100px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+html {
+  background-color: grey;
+}
+button {
+  border: none;
+  background-color: grey;
+  width: 300px;
+  height: 300px;
+  transition-duration: 0.07;
+}
+
+.clicked {
+  border: solid goldenrod;
+  scale: calc(1010%);
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+.score-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 200px;
+  color : gold;
+  font-size: 50px;
+}
+
+.winner {
+  font-weight: bolder;
+  color: green;
+  font-size: 200px;
+}
+
+.header {
+  font-weight: bolder;
+  color: darkorange;
+  font-size: 80px;
+}
