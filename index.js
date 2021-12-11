@@ -1,10 +1,7 @@
 let playerScore = 0;
 let computerScore = 0;
 let games = 0;
-
-document.querySelector(".player-score").textContent = "Human Score: " + playerScore;
-document.querySelector(".computer-score").textContent = "Robot Score: " + computerScore;
-document.querySelector(".games-played").textContent = "Games: " + games;
+const gamesAllowed = 10;
 
 function computerPlay() {
   let number = Math.floor(Math.random() * 3);
@@ -47,50 +44,100 @@ function play(playerSelection, computerSelection) {
   }
 }
 
-if (games < 5) {
-  document.querySelectorAll("button").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      console.log(e.ID);
-    });
-  });
+function playRound(playerChoice) {
+  const computerChoise = computerPlay();
+  document.querySelector(".header").textContent =
+    "Computer chose: " + computerChoise;
+  console.log(computerChoise);
+  game(playerChoice, computerChoise);
 }
 
-function reset() {
+document.querySelectorAll("button").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    if (games < gamesAllowed) {
+      playRound(btn.id);
+      btn.classList.add("clicked");
+      setTimeout(0.07);
+    }
+  });
+
+  btn.addEventListener("transitionend", () => {
+    btn.classList.remove("clicked");
+  });
+});
+
+document.querySelectorAll("button").forEach((btn) => {
+  btn.addEventLis;
+});
+
+function resetGame() {
   games = 0;
   playerScore = 0;
   computerScore = 0;
+
+  document.querySelector(".player-score").textContent = "Human score: 0";
+  document.querySelector(".computer-score").textContent = "Robot score: 0";
+  document.querySelector(".games-played").textContent = "Games: 0";
   document.querySelector(".header").textContent =
-    " Choose rock, paper, scissors to start.";
+    " Choose the rock!, paper or scissors to start.";
   document.querySelector(".winner").textContent = "";
+  const resetButton = document.querySelector("#reset");
+  document.querySelector(".gameover").removeChild(resetButton);
 }
 
-// function game() {
-//   let player = 0;
-//   let computer = 0;
-//   for (let i = 0; i < 5; i++) {
-//     let playerChose = prompt("Choose: Rock, Paper, Scissors");
-//     playerChose =
-//       playerChose[0].toUpperCase() + playerChose.slice(1).toLowerCase();
-//     let computerChose = computerPlay();
-//     console.log("Player: " + playerChose);
-//     console.log("Computer: " + computerChose);
-//     let result = play(playerChose, computerChose);
+function game(playerChoise, computerChoise) {
+  let result = play(playerChoise, computerChoise);
 
-//     if (result === 1) {
-//       player++;
-//     } else if (result === -1) {
-//       computer++;
-//     }
+  const winner = document.querySelector(".winner");
 
-//     console.log("Player score: " + player);
-//     console.log("Computer score: " + computer);
-//   }
-//   if (player > computer) {
-//     console.log("Player Won!");
-//   } else if (computer > player) {
-//     console.log("Computer Won!");
-//   } else {
-//     console.log("It's a Draw!");
-//   }
-// }
-// game();
+  if (result === 1) {
+    playerScore++;
+    drawScores("Human", "green");
+  } else if (result === -1) {
+    computerScore++;
+    drawScores("Robot", "red");
+  } else {
+    drawScores("Nobody", "yellow");
+  }
+
+  games++;
+  document.querySelector(".games-played").textContent = "Games: " + games;
+
+  if (games === gamesAllowed) {
+    gameOver();
+  }
+}
+
+function drawScores(player, color) {
+  const winner = document.querySelector(".winner");
+  winner.textContent = player + " Won this round";
+  winner.style.color = color;
+
+  if (player === "Robot") {
+    document.querySelector(".computer-score").textContent =
+      "Robot score: " + computerScore;
+  } else if (player === "Human") {
+    document.querySelector(".player-score").textContent =
+      "Human score: " + playerScore;
+  }
+}
+
+function gameOver() {
+  const winner = document.querySelector(".winner");
+  if (playerScore > computerScore) {
+    winner.textContent = "Human Won the game!";
+    winner.style.color = "green";
+  } else if (computerScore > playerScore) {
+    winner.textContent = "Robot Won the game!";
+    winner.style.color = "red";
+  } else {
+    winner.textContent = "Game was a Draw!";
+    winner.style.color = "yellow";
+  }
+
+  const reset = document.createElement("button");
+  reset.textContent = "Play Again!";
+  reset.setAttribute("id", "reset");
+  reset.addEventListener("click", resetGame);
+  document.querySelector(".gameover").appendChild(reset);
+}
